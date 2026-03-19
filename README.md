@@ -1,81 +1,88 @@
-# Two-Pass Assembler System in C
+# SMPL Assembler-Linker-Loader System
 
-A complete implementation of a two-pass assembler system in C, including parsing, symbol table generation, instruction encoding, and memory loading simulation.
+A complete two-pass assembler, linker, and relocating loader implementation for the SMPL (Simple) assembly language.
 
----
+## 📚 Course CSE 232 - Systems Programming
 
 ## 👥 Contributors
 
-This project was developed as a group project for the **CSE 232 - Systems Programming** course.
+This is a **group project**. Each member was responsible for specific modules:
 
-| Name | GitHub | Responsibility |
-|------|--------|----------------|
-| Yiğit Can Turan | [@Yigit1708](https://github.com/Yigit1708) | Assembler Pass 1, tables, and partial code implementation |
-| Nisa Of | [@Nisaof](https://github.com/Nisaof) | Assembler Pass 1 and parser |
-| Efe Demirci | [@efedemirci04](https://github.com/efedemirci04) | Assembler Pass 2 |
-| Deniz Baltaş | [@denizbaltas](https://github.com/denizbaltas) | Linker |
-| Işıl Hocaoğlu | [@isilhocaoglu](https://github.com/isilhocaoglu)  | Loader, integration, and Makefile |
+| Name | GitHub | Responsibility | Status |
+|------|--------|----------------|--------|
+| **Işıl Hocaoğlu** | | Loader, Integration & Makefile |
+| **Nisa Of** | [@Nisaof](https://github.com/Nisaof) | Assembler Pass 1 - Parser |
+| **Yiğit Can Turan** | [@Yigit1708](https://github.com/Yigit1708) | Assembler Pass 1 - Tables & Partial Code |
+| **Efe Demirci** | [@efedemirci04](https://github.com/efedemirci04) | Assembler Pass 2 |
+| **Deniz Baltaş** | [@denizbaltas](https://github.com/denizbaltas) | Linker |
 
----
+### My Contribution
 
-## 💡 My Contribution
+I was responsible for:
+- **Loader Module** (`loader.c`, `loader.h`, `loader_main.c`)
+  - Loading executable and DAT files into memory
+  - Implementing relocation logic based on user-provided load point
+  - Memory array management and display
+- **System Integration** - Ensuring all modules work together seamlessly
+- **Makefile** - Build system configuration
+- **Group Leadership** - Coordinating team efforts and submissions
 
-My main contributions to this project include:
+## 📋 Project Overview
 
-- Implemented **symbol table** and **instruction table structures**
-- Contributed to **Assembler Pass 1 logic** and parsing workflow
-- Supported **partial object code generation**
-- Participated in **system integration and debugging**
-
----
-
-## 🧠 System Overview
-
-The system follows a classic two-pass assembler pipeline:
+This project implements a complete assembly language processing toolchain:
 
 ```
-.asm → Pass 1 → Pass 2 → Loader → Memory Execution
+.asm file → Assembler → .o & .t files → Linker → .exe & .t files → Loader → Memory Array M[]
 ```
 
-- **Pass 1:** Parses assembly code and builds the symbol table  
-- **Pass 2:** Translates instructions into machine code  
-- **Loader:** Loads executable into memory with relocation  
-- **Execution:** Simulated memory output  
+### Components
 
----
+1. **Two-Pass Assembler**
+   - **Pass 1**: Parses source code, builds Symbol Table (ST), Forward Reference Table (FRT), Direct Address Table (DAT), and generates partial object code
+   - **Pass 2**: Resolves forward references and generates final relocatable object code (.o file)
 
-## 🛠️ Instruction Set (SMPL)
+2. **Linker**
+   - Creates External Symbol Table (ESTAB)
+   - Resolves external references between modules
+   - Generates executable code (.exe file)
 
-The assembler supports a custom instruction set including arithmetic, control flow, and memory operations.
+3. **Loader**
+   - Accepts load point from user input
+   - Loads executable into memory array with relocation
+   - Displays final memory dump
 
-| Mnemonic | Opcode | Mode | Description |
-|----------|--------|------|-------------|
-| ADD | A1/A2 | direct/immediate | AC ← AC + value |
-| SUB | A3/A4 | direct/immediate | AC ← AC - value |
-| LDA | E1/E2 | direct/immediate | Load to AC |
-| STA | F1 | direct | Store AC to memory |
-| BEQ | B1 | relative | Branch if AC = 0 |
-| JMP | B4 | direct | Unconditional jump |
-| CLL | C1 | direct | Call subroutine |
-| RET | C2 | implied | Return |
-| HLT | FE | implied | Halt execution |
+## 🛠️ SMPL Instruction Set
 
-> Full instruction set implementation can be found in `tables.c`
+| Mnemonic | Opcode | Bytes | Mode | Description |
+|----------|--------|-------|------|-------------|
+| ADD | A1/A2 | 3/2 | direct/immediate | AC ← AC + M[] or AC + n |
+| SUB | A3/A4 | 3/2 | direct/immediate | AC ← AC - M[] or AC - n |
+| LDA | E1/E2 | 3/2 | direct/immediate | AC ← M[] or n |
+| STA | F1 | 3 | direct | M[] ← AC |
+| BEQ | B1 | 3 | relative | Branch if AC = 0 |
+| BGT | B2 | 3 | relative | Branch if AC > 0 |
+| BLT | B3 | 3 | relative | Branch if AC < 0 |
+| JMP | B4 | 3 | direct | Unconditional jump |
+| CLL | C1 | 3 | direct | Call subroutine |
+| RET | C2 | 1 | implied | Return |
+| INC | D2 | 1 | implied | AC ← AC + 1 |
+| DEC | D1 | 1 | implied | AC ← AC - 1 |
+| HLT | FE | 1 | implied | Halt |
 
----
-
-## ⚙️ Build & Run
+## 🔧 Build & Run
 
 ### Requirements
-- GCC compiler  
+- GCC compiler
 - Linux environment (tested on Ubuntu)
 
 ### Compilation
+
 ```bash
 make all
 ```
 
-## Usage
+### Usage
+
 ```bash
 # Run the complete pipeline
 ./main <input.asm>
@@ -83,30 +90,27 @@ make all
 # Run loader separately
 ./loader_main <program.exe> <program.t>
 ```
----
 
 ## 📁 Project Structure
 
-```bash
-├── main.c           # Entry point
-├── parser.c/.h      # Assembly parsing
-├── tables.c/.h      # Symbol & opcode tables
-├── pass1.c/.h       # Pass 1 (symbol table)
-├── pass2.c/.h       # Pass 2 (machine code)
-├── linker_exec.c    # Linker
-├── loader.c/.h      # Loader
-├── loader_main.c    # Loader entry
+```
+├── main.c           # Main entry point
+├── parser.c/.h      # Line parsing (label/opcode/operand)
+├── tables.c/.h      # Symbol Table, FRT, DAT, HDRM Table management
+├── pass1.c/.h       # Assembler Pass 1
+├── pass2.c/.h       # Assembler Pass 2
+├── linker_exec.c    # Linker implementation
+├── loader.c/.h      # Loader implementation
+├── loader_main.c    # Loader standalone entry
 ├── Makefile         # Build configuration
-├── *.asm            # Sample assembly programs
+├── test_main.asm    # Test: Main program
+├── sub.asm          # Test: Subroutine module
+└── data.asm         # Test: Data module
 ```
 
----
+## 📝 Example
 
-
-## 🧪 Example
-
-### Input (Main Program)
-
+**Input (Main Program):**
 ```asm
 PROG MAIN
 EXTREF AD5,XX,ZZ
@@ -123,9 +127,9 @@ LOOP: LDA XX
 EX:   HLT
 END
 ```
----
-### Memory Output (loadpoint = 1000)
-```asm
+
+**Memory Output (loadpoint = 1000):**
+```
 1000 E1 10 33
 1003 C1 10 27
 1006 A1 10 35
@@ -144,7 +148,4 @@ END
 1035 3
 ```
 
----
-## This project was developed for educational purposes as part of CSE 232 coursework.
-
----
+## 📄 This project was developed for educational purposes as part of CSE 232 coursework.
