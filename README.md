@@ -76,12 +76,13 @@ make all
 ```
 
 ## Usage
+```
 # Run the complete pipeline
 ./main <input.asm>
 
 # Run loader separately
 ./loader_main <program.exe> <program.t>
-
+```
 ---
 
 ## 📁 Project Structure
