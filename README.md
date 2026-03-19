@@ -99,51 +99,6 @@ make all
 ├── Makefile         # Build configuration
 ├── *.asm            # Sample assembly programs
 ```
----
-
-## 🧪 Example
-
-### Input (Main Program)
-
-```asm
-PROG MAIN
-EXTREF AD5,XX,ZZ
-START
-LOOP: LDA XX
-      CLL AD5
-      ADD ZZ
-      CLL AD5
-      STA 70
-      LDA ZZ
-      SUB #1
-      BLT EX
-      JMP LOOP
-EX:   HLT
-END
-```
----
-### Memory Output (loadpoint = 1000)
-```asm
-1000 E1 10 33
-1003 C1 10 27
-1006 A1 10 35
-1009 C1 10 27
-1012 F1 00 70
-1015 E1 10 35
-1018 A4 01
-1020 B3 10 26
-1023 B4 10 00
-1026 FE
-1027 A2 05
-1029 F1 10 34
-1032 C2
-1033 20
-1034 0
-1035 3
-```
-
----
-## This project was developed for educational purposes as part of CSE 232 coursework.
 
 ---
 
