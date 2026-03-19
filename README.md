@@ -67,22 +67,20 @@ The assembler supports a custom instruction set including arithmetic, control fl
 ## ⚙️ Build & Run
 
 ### Requirements
-- GCC  
-- Linux (tested on Ubuntu)  
+- GCC compiler  
+- Linux environment (tested on Ubuntu)
 
-### Build
+### Compilation
 ```bash
-make
+make all
 ```
 
-### Run
-```bash
-# Run full pipeline
-./main test_main.asm
+## Usage
+# Run the complete pipeline
+./main <input.asm>
 
 # Run loader separately
-./loader_main program.exe program.t
-```
+./loader_main <program.exe> <program.t>
 
 ---
 
