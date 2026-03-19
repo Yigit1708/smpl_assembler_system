@@ -8,13 +8,14 @@ A complete two-pass assembler, linker, and relocating loader implementation for 
 
 This is a **group project**. Each member was responsible for specific modules:
 
-| Name | GitHub | Responsibility | Status |
-|------|--------|----------------|--------|
-| **Işıl Hocaoğlu** | | Loader, Integration & Makefile |
-| **Nisa Of** | [@Nisaof](https://github.com/Nisaof) | Assembler Pass 1 - Parser |
-| **Yiğit Can Turan** | [@Yigit1708](https://github.com/Yigit1708) | Assembler Pass 1 - Tables & Partial Code |
-| **Efe Demirci** | [@efedemirci04](https://github.com/efedemirci04) | Assembler Pass 2 |
-| **Deniz Baltaş** | [@denizbaltas](https://github.com/denizbaltas) | Linker |
+| Name | GitHub | Responsibility |
+|------|--------|----------------|
+| Yiğit Can Turan | [@Yigit1708](https://github.com/Yigit1708) | Assembler Pass 1, tables, and partial code implementation |
+| Nisa Of | [@Nisaof](https://github.com/Nisaof) | Assembler Pass 1 and parser |
+| Efe Demirci | [@efedemirci04](https://github.com/efedemirci04) | Assembler Pass 2 |
+| Deniz Baltaş | [@denizbaltas](https://github.com/denizbaltas) | Linker |
+| Işıl Hocaoğlu | [@isilhocaoglu](https://github.com/işilhocaoglu)  | Loader, integration, and Makefile |
+
 
 ### My Contribution
 
