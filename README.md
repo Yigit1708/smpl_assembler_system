@@ -14,7 +14,7 @@ This project was developed as a group project for the **CSE 232 - Systems Progra
 | Nisa Of | [@Nisaof](https://github.com/Nisaof) | Assembler Pass 1 and parser |
 | Efe Demirci | [@efedemirci04](https://github.com/efedemirci04) | Assembler Pass 2 |
 | Deniz Baltaş | [@denizbaltas](https://github.com/denizbaltas) | Linker |
-| Işıl Hocaoğlu | - | Loader, integration, and Makefile |
+| Işıl Hocaoğlu | [@isilhocaoglu](https://github.com/isilhocaoglu)  | Loader, integration, and Makefile |
 
 ---
 
