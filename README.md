@@ -1,9 +1,12 @@
 # Two-Pass Assembler System in C
-A complete implementation of a two-pass assembler with parsing, symbol table generation, instruction encoding, and memory loading simulation.
+
+A complete implementation of a two-pass assembler system in C, including parsing, symbol table generation, instruction encoding, and memory loading simulation.
+
+---
 
 ## 👥 Contributors
 
-This project was developed as a group project for the CSE 232 Systems Programming course.
+This project was developed as a group project for the **CSE 232 - Systems Programming** course.
 
 | Name | GitHub | Responsibility |
 |------|--------|----------------|
@@ -13,26 +16,31 @@ This project was developed as a group project for the CSE 232 Systems Programmin
 | Deniz Baltaş | [@denizbaltas](https://github.com/denizbaltas) | Linker |
 | Işıl Hocaoğlu | - | Loader, integration, and Makefile |
 
+---
 
-## My Contribution
+## 💡 My Contribution
 
 My main contributions to this project include:
 
-- Implementing the symbol table and instruction table structures
-- Contributing to Assembler Pass 1 logic
-- Supporting partial code generation
-- Participating in integration and testing of the assembler workflow
+- Implemented **symbol table** and **instruction table structures**
+- Contributed to **Assembler Pass 1 logic** and parsing workflow
+- Supported **partial object code generation**
+- Participated in **system integration and debugging**
+
+---
 
 ## 🧠 System Overview
 
 The system follows a classic two-pass assembler pipeline:
 
+```
 .asm → Pass 1 → Pass 2 → Loader → Memory Execution
+```
 
-- **Pass 1:** Parses assembly code and generates the symbol table  
+- **Pass 1:** Parses assembly code and builds the symbol table  
 - **Pass 2:** Translates instructions into machine code  
-- **Loader:** Loads the executable into memory with relocation  
-- **Execution:** Simulated memory output
+- **Loader:** Loads executable into memory with relocation  
+- **Execution:** Simulated memory output  
 
 ---
 
@@ -52,12 +60,56 @@ The assembler supports a custom instruction set including arithmetic, control fl
 | RET | C2 | implied | Return |
 | HLT | FE | implied | Halt execution |
 
-## ⚙️ How to Run
+> Full instruction set implementation can be found in `tables.c`
+
+---
+
+## ⚙️ Build & Run
 
 ### Requirements
-- GCC
-- Linux environment
+- GCC  
+- Linux (tested on Ubuntu)  
 
 ### Build
 ```bash
 make
+```
+
+### Run
+```bash
+# Run full pipeline
+./main test_main.asm
+
+# Run loader separately
+./loader_main program.exe program.t
+```
+
+---
+
+## 📁 Project Structure
+
+```bash
+├── main.c           # Entry point
+├── parser.c/.h      # Assembly parsing
+├── tables.c/.h      # Symbol & opcode tables
+├── pass1.c/.h       # Pass 1 (symbol table)
+├── pass2.c/.h       # Pass 2 (machine code)
+├── linker_exec.c    # Linker
+├── loader.c/.h      # Loader
+├── loader_main.c    # Loader entry
+├── Makefile         # Build configuration
+├── *.asm            # Sample assembly programs
+```
+
+---
+
+## 🧪 Example
+
+Sample `.asm` files are provided in the repository for testing and demonstration purposes.
+
+---
+
+## 👨‍💻 Author
+
+Yiğit Can Turan  
+Computer Engineering Student
