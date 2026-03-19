@@ -121,41 +121,6 @@ LOOP: LDA XX
       JMP LOOP
 EX:   HLT
 END
-```# Two-Pass Assembler System in C
-
-A complete implementation of a two-pass assembler system in C, including parsing, symbol table generation, instruction encoding, and memory loading simulation.
-
----
-
-## 👥 Contributors
-
-This project was developed as a group project for the **CSE 232 - Systems Programming** course.
-
-| Name | GitHub | Responsibility |
-|------|--------|----------------|
-| Yiğit Can Turan | [@Yigit1708](https://github.com/Yigit1708) | Assembler Pass 1, tables, and partial code implementation |
-| Nisa Of | [@Nisaof](https://github.com/Nisaof) | Assembler Pass 1 and parser |
-| Efe Demirci | [@efedemirci04](https://github.com/efedemirci04) | Assembler Pass 2 |
-| Deniz Baltaş | [@denizbaltas](https://github.com/denizbaltas) | Linker |
-| Işıl Hocaoğlu | [@isilhocaoglu](https://github.com/isilhocaoglu)  | Loader, integration, and Makefile |
-
----
-
-## 💡 My Contribution
-
-My main contributions to this project include:
-
-- Implemented **symbol table** and **instruction table structures**
-- Contributed to **Assembler Pass 1 logic** and parsing workflow
-- Supported **partial object code generation**
-- Participated in **system integration and debugging**
-
----
-
-## 🧠 System Overview
-
-The system follows a classic two-pass assembler pipeline:
-
 ```
 .asm → Pass 1 → Pass 2 → Loader → Memory Execution
 ```
